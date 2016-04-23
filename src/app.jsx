@@ -46,7 +46,13 @@ export default class App extends React.Component {
 class HomeContainer extends React.Component {
   render() {
     return (
+      <AltContainer
+        stores={[CatchStore]}
+        inject={{
+          catches: () => CatchStore.getState().catches || []
+        }}>
         <Home/>
+      </AltContainer>
     );
   }
 }

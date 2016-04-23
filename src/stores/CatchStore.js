@@ -16,7 +16,7 @@ class CatchStore {
     return x;
   }
   loadCatchesSuccess(x) {
-    this.state.catches = x;
+    this.state.catches = x.data;
     this.setState(this.state);
   }
 }

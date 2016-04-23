@@ -11,7 +11,6 @@ class CatchActions {
     }
   }
   loadCatchesSuccess(x) {
-    console.log(x);
     return x;
   }
 }
