@@ -51,16 +51,17 @@ export default class App extends React.Component {
           textAlign: "center"
         }}>
           <div style={{
-            fontSize: "1.5em",
+            fontSize: "2em",
             color: "white"
-          }}>Welcome to Plenty of Fish</div>
+          }}>Welcome to FINFO!</div>
           <img src={"/public/Fish_sashimi_long.gif"} style={{
+            marginTop : "1em",
             width: "40%"
           }}/>
           <div style={{
-            fontSize: "1.5em",
+            fontSize: "2em",
             color: "white"
-          }}>Loading App...</div>
+          }}>Loading ...</div>
         </div>
       )
     }
