@@ -12,7 +12,7 @@ import CatchStore from './stores/CatchStore';
 
 export default class App extends React.Component {
   state = {
-    showSplashScreen : true
+    showSplashScreen: false
   }
   componentDidMount() {
     /* Bootstap data. */
@@ -25,24 +25,35 @@ export default class App extends React.Component {
     }.bind(this), 4000);
   }
   render() {
-    if(this.state.showSplashScreen) {
+    if (this.state.showSplashScreen) {
       return (
         <div style={{
-            height : "100%",
-            backgroundColor : "rgba(0,188,212,0.9)",
-            textAlign: "center"
-          }}>
+          height: "100%",
+          backgroundColor: "rgb(118, 214, 227)",
+          textAlign: "center"
+        }}>
+          <div style={{
+            fontSize: "1.5em",
+            color: "white"
+          }}>Welcome to Plenty of Fish</div>
           <img src={"/public/Fish_sashimi_long.gif"} style={{
-              width: "40%"
-            }}/>
-          <h3>Loading App...</h3>
+            width: "40%"
+          }}/>
+          <div style={{
+            fontSize: "1.5em",
+            color: "white"
+          }}>Loading App...</div>
         </div>
       )
     }
 
     return (
       <div>
-        <nav className="navbar navbar-default navbar-fixed-top">
+        <nav className="navbar navbar-default navbar-fixed-top" style={{
+            backgroundColor : "rgb(118, 214, 227)",
+            borderColor : "rgb(118, 214, 227)",
+            boxShadow: "0px 0px 4px 0px rgba(0,0,0,0.75)"
+          }}>
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -70,11 +81,9 @@ export default class App extends React.Component {
 class HomeContainer extends React.Component {
   render() {
     return (
-      <AltContainer
-        stores={[CatchStore]}
-        inject={{
-          catches: () => CatchStore.getState().catches || []
-        }}>
+      <AltContainer stores={[CatchStore]} inject={{
+        catches: () => CatchStore.getState().catches || []
+      }}>
         <Home/>
       </AltContainer>
     );

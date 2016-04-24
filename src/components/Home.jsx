@@ -1,7 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {Table, TableHeaderColumn, TableRow, TableHeader, TableRowColumn, TableBody} from 'material-ui';
-import test from 'file!img!../img/Fish_sashimi_short.gif';
+import moment from 'moment';
+import {
+  Table,
+  TableHeaderColumn,
+  TableRow,
+  TableHeader,
+  TableRowColumn,
+  TableBody
+} from 'material-ui';
 
 export default class Home extends React.Component {
   static propTypes = {
@@ -16,28 +23,50 @@ export default class Home extends React.Component {
     var columns = [
       {
         key: "date",
-        name: "Date and Time",
+        name: "Date",
+        formatter : (value) => {
+          return moment(value.date).format("MMM DD, YYYY");
+        }
       }, {
-        key : "lat_long",
-        name : "Latitude and Longitute",
+        key: "latLong",
+        name: "Latitude and Longitute",
+        formatter: (value) => {
+          return JSON.stringify([
+            Number.parseFloat(Number.parseFloat(value.latitude).toFixed(3)),
+            Number.parseFloat(Number.parseFloat(value.longitude).toFixed(3))
+          ]);
+        }
       }, {
-        key : ""
+        key: "species",
+        name: "Species"
+      }, {
+        key: "total_catch_number",
+        name: "Number Caught"
+      }, {
+        key: "total_catch_weight_kg",
+        name: "Total Weight (Kg)"
+      }, {
+        key: "vessel",
+        name: "Vessel Name"
       }
-    ]
+    ];
 
-    var headerColumns = Object.keys(this.props.catches[0]).map(key => {
-      return <TableHeaderColumn key={key}>{key}</TableHeaderColumn>
+    var identity = (v, key) => v[key];
+
+    var headerColumns = columns.map(column => {
+      return <TableHeaderColumn key={column.key}>{column.name}</TableHeaderColumn>
     });
 
     var bodyRows = this.props.catches.map(c => {
-      var columns = Object.keys(c).map(key => {
-        return <TableRowColumn>{c[key]}</TableRowColumn>
+      var rowColumns = columns.map(column => {
+        var formatter = column.formatter || identity;
+        return <TableRowColumn>{formatter(c, column.key)}</TableRowColumn>
       });
 
       return (
-        <TableRow>{columns}</TableRow>
+        <TableRow>{rowColumns}</TableRow>
       );
-    })
+    });
 
     return (
       <div>
