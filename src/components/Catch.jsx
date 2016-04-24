@@ -1,12 +1,9 @@
-import R from 'ramda';
 import React from 'react';
 import Radium from 'radium';
-import connectToStores from 'alt-utils/lib/connectToStores';
 import {browserHistory} from 'react-router';
 
 import CatchStore from '../stores/CatchStore';
 
-@connectToStores
 @Radium
 export default class Catch extends React.Component {
   static propTypes = {
@@ -14,12 +11,6 @@ export default class Catch extends React.Component {
   };
   state = {
   };
-  static getStores() {
-    return [CatchStore];
-  }
-  static getPropsFromStores() {
-    return {catches: CatchStore.getState().catches};
-  }
   render() {
     return (
       <div>

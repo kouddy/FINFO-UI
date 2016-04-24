@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const va = axios.create({
-  baseURL: 'http://localhost:6001/',
+  baseURL: 'http://testappy.mybluemix.net/',
   timeout: 3000
 });
 
