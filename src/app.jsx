@@ -10,7 +10,9 @@ import Catch from './components/Catch.jsx';
 import Operations from './components/Operations.jsx';
 
 import CatchActions from './actions/CatchActions';
+import OperationActions from './actions/OperationActions';
 import CatchStore from './stores/CatchStore';
+import OperationStore from './stores/OperationStore';
 
 export default class App extends React.Component {
   state = {
@@ -20,6 +22,7 @@ export default class App extends React.Component {
   componentDidMount() {
     /* Bootstap data. */
     CatchActions.loadCatches();
+    OperationActions.loadOperations();
 
     /* After 4 seconds, go to actual app. */
     setTimeout(() => {
@@ -113,6 +116,18 @@ class CatchesContainer extends React.Component {
   }
 }
 
+class OperationsContainer extends React.Component {
+  render() {
+    return (
+      <AltContainer stores={[OperationStore]} inject={{
+        operations: () => OperationStore.getState().operations || []
+      }}>
+        <Operations/>
+      </AltContainer>
+    );
+  }
+}
+
 const div = document.createElement('div');
 div.style.height = "100%";
 document.body.appendChild(div);
@@ -122,7 +137,7 @@ var routes = (
     <Route path="/" component={App}>
       <IndexRoute component={CatchesContainer}/>
       <Route path="catches" component={CatchesContainer}/>
-      <Route path="operations" component={Operations}/>
+      <Route path="operations" component={OperationsContainer}/>
       <Route path="driver/:id" component={Operations}/>
     </Route>
   </Router>

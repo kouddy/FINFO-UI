@@ -1,4 +1,3 @@
-import R from 'ramda';
 import alt from '../libs/alt';
 
 import CatchActions from '../actions/CatchActions';
