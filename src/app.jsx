@@ -5,6 +5,7 @@ import {Divider, LeftNav, MenuItem, RaisedButton} from 'material-ui';
 
 import AltContainer from 'alt-container';
 
+import Home from './components/Home.jsx';
 import Catches from './components/Catches.jsx';
 import Catch from './components/Catch.jsx';
 import Operations from './components/Operations.jsx';
@@ -151,7 +152,7 @@ document.body.appendChild(div);
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={CatchesContainer}/>
+      <IndexRoute component={Home}/>
       <Route path="catches" component={CatchesContainer}/>
       <Route path="operations" component={OperationsContainer}/>
       <Route path="driver/:id" component={Operations}/>

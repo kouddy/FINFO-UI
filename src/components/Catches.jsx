@@ -25,7 +25,7 @@ export default class Catches extends React.Component {
 
     var rows = this.props.catches.map(c => {
       return (
-        <Card actAsExpander={true} style={{
+        <Card style={{
           display: "block",
           width: "100%",
           margin: "10px auto",
@@ -35,6 +35,7 @@ export default class Catches extends React.Component {
           <CardTitle title={c.vessel + " caught " + c.species}/>
           <CardText>
             <div>
+              <div>{"Specimen: "}<FlatButton label={c.species} secondary={true}/></div>
               <div>
                 {"Number Caught: "}{c.total_catch_number}</div>
               <div>
