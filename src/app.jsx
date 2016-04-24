@@ -11,11 +11,35 @@ import CatchActions from './actions/CatchActions';
 import CatchStore from './stores/CatchStore';
 
 export default class App extends React.Component {
+  state = {
+    showSplashScreen : true
+  }
   componentDidMount() {
     /* Bootstap data. */
     CatchActions.loadCatches();
+
+    /* After 4 seconds, go to actual app. */
+    setTimeout(() => {
+      this.state.showSplashScreen = false;
+      this.setState(this.state);
+    }.bind(this), 4000);
   }
   render() {
+    if(this.state.showSplashScreen) {
+      return (
+        <div style={{
+            height : "100%",
+            backgroundColor : "rgba(0,188,212,0.9)",
+            textAlign: "center"
+          }}>
+          <img src={"/public/Fish_sashimi_long.gif"} style={{
+              width: "40%"
+            }}/>
+          <h3>Loading App...</h3>
+        </div>
+      )
+    }
+
     return (
       <div>
         <nav className="navbar navbar-default navbar-fixed-top">
@@ -58,6 +82,7 @@ class HomeContainer extends React.Component {
 }
 
 const div = document.createElement('div');
+div.style.height = "100%";
 document.body.appendChild(div);
 
 var routes = (

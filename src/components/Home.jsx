@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {Table, TableHeaderColumn, TableRow, TableHeader, TableRowColumn, TableBody} from 'material-ui';
+import test from 'file!img!../img/Fish_sashimi_short.gif';
 
 export default class Home extends React.Component {
   static propTypes = {
@@ -11,7 +12,7 @@ export default class Home extends React.Component {
     if (!this.props.catches || !this.props.catches.length) {
       return <div></div>
     }
-
+    console.log(test);
     var headerColumns = Object.keys(this.props.catches[0]).map(key => {
       return <TableHeaderColumn key={key}>{key}</TableHeaderColumn>
     });
