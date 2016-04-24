@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, Link, IndexRoute, browserHistory} from 'react-router';
-import {LeftNav, MenuItem, RaisedButton} from 'material-ui';
+import {Divider, LeftNav, MenuItem, RaisedButton} from 'material-ui';
 
 import AltContainer from 'alt-container';
 
@@ -55,7 +55,7 @@ export default class App extends React.Component {
             color: "white"
           }}>Welcome to FINFO!</div>
           <img src={"/public/Fish_sashimi_long.gif"} style={{
-            marginTop : "1em",
+            marginTop: "1em",
             width: "40%"
           }}/>
           <div style={{
@@ -84,6 +84,18 @@ export default class App extends React.Component {
           </div>
         </nav>
         <LeftNav docked={false} width={200} open={this.state.showLeftNav} onRequestChange={this.onRequestLeftNavChange}>
+          <Link to="/" style={{
+            textDecoration: "none"
+          }}>
+            <MenuItem onClick={this.onCloseLeftNav} style={{
+              fontSize: "1.4em",
+              color: "white",
+              backgroundColor: "rgb(118, 214, 227)"
+            }}>
+              FINFO
+            </MenuItem>
+          </Link>
+          <Divider/>
           <Link to="/catches" style={{
             textDecoration: "none"
           }}>
@@ -94,6 +106,9 @@ export default class App extends React.Component {
           }}>
             <MenuItem onClick={this.onCloseLeftNav}>Operations</MenuItem>
           </Link>
+          <Divider/>
+          <MenuItem primaryText="About Us"/>
+          <MenuItem primaryText="Help & Feedback"/>
         </LeftNav>
         <div className="container" style={{
           paddingTop: 70/* default navbar height (50px) + navbar's margin (20px) */

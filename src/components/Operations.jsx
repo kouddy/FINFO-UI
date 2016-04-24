@@ -1,14 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import moment from 'moment';
-import {
-  Table,
-  TableHeaderColumn,
-  TableRow,
-  TableHeader,
-  TableRowColumn,
-  TableBody
-} from 'material-ui';
+import {Card, CardTitle, CardText, CardActions, FlatButton} from 'material-ui';
 
 export default class Operations extends React.Component {
   static propTypes = {
@@ -53,36 +46,54 @@ export default class Operations extends React.Component {
       }
     ];
 
-    var identity = (v, key) => v[key];
+    var formatDate = (value) => {
+      return moment(value.date).format("MMM DD, YYYY");
+    };
+    var formatLatLng = (value) => {
+      return JSON.stringify([
+        Number.parseFloat(Number.parseFloat(value.latitude).toFixed(3)),
+        Number.parseFloat(Number.parseFloat(value.longitude).toFixed(3))
+      ]);
+    };
 
-    var headerColumns = columns.map(column => {
-      return <TableHeaderColumn key={column.key}>{column.name}</TableHeaderColumn>
-    });
-
-    var bodyRows = this.props.operations.map(c => {
-      var rowColumns = columns.map(column => {
-        var formatter = column.formatter || identity;
-        return <TableRowColumn>{formatter(c, column.key)}</TableRowColumn>
-      });
-
+    var rows = this.props.operations.map(c => {
       return (
-        <TableRow>{rowColumns}</TableRow>
+        <Card actAsExpander={true} style={{
+          display: "block",
+          width: "100%",
+          margin: "10px auto",
+          padding: 5,
+          border: "1px solid #ccc"
+        }}>
+          <CardTitle title={c.vessel + " performed " + c.operation_name}/>
+          <CardText>
+            <div>
+              <div>
+                {"Operation ID: "}{c.operation_id}</div>
+              <div>
+                {"Performance: "}{c.performance_result}</div>
+            </div>
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "0.5em",
+              color: "#aaa"
+            }}>
+              <div>
+                {"Date: "}{formatDate(c)}</div>
+              <div>
+                {"Co-ordinate: "}{formatLatLng(c)}</div>
+            </div>
+          </CardText>
+          <CardActions>
+            <FlatButton label="Show Details" secondary={true}/>
+          </CardActions>
+        </Card>
       );
     });
 
     return (
-      <div>
-        <Table>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              {headerColumns}
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {bodyRows}
-          </TableBody>
-        </Table>
-      </div>
+      <div>{rows}</div>
     );
   }
 }
