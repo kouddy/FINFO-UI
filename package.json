@@ -38,7 +38,6 @@
   "dependencies": {
     "alt": "^0.18.1",
     "alt-container": "^1.0.0",
-    "alt-utils": "^1.0.0",
     "axios": "^0.10.0",
     "firebase": "^2.4.0",
     "jquery": "^2.2.1",
