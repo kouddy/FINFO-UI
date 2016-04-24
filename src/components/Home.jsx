@@ -12,7 +12,19 @@ export default class Home extends React.Component {
     if (!this.props.catches || !this.props.catches.length) {
       return <div></div>
     }
-    console.log(test);
+
+    var columns = [
+      {
+        key: "date",
+        name: "Date and Time",
+      }, {
+        key : "lat_long",
+        name : "Latitude and Longitute",
+      }, {
+        key : ""
+      }
+    ]
+
     var headerColumns = Object.keys(this.props.catches[0]).map(key => {
       return <TableHeaderColumn key={key}>{key}</TableHeaderColumn>
     });
