@@ -10,7 +10,7 @@ import {
   TableBody
 } from 'material-ui';
 
-export default class Home extends React.Component {
+export default class Catches extends React.Component {
   static propTypes = {
     catches: React.PropTypes.array
   };
